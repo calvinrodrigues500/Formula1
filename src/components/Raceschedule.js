@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 function Raceschedule() {
 
-    const [schedules, setSchedules] = useState({})
+    const [schedules, setSchedules] = useState([])
     const [round,setRound] = useState('')
     const [raceName,setRaceName] = useState('')
     const [circuitName,setCircuitName] = useState('')
@@ -26,7 +26,6 @@ function Raceschedule() {
         setDate(result.data.MRData.RaceTable.Races[0].date)
         setTime(result.data.MRData.RaceTable.Races[0].time)
         setSchedules(result.data.MRData.RaceTable.Races)
-        console.log(schedules);
     }
     useEffect(() => {
         fetchData()
@@ -60,24 +59,16 @@ function Raceschedule() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         {schedules.map((data)=>(
-                            <Col>
+                            <tr key={data.round}>
                                 <td>{data.round}</td>
                                 <td>{data.raceName}</td>
                                 <td>{data.Circuit.circuitName}</td>
                                 <td>{data.Circuit.Location.country}</td>
                                 <td>{data.date}</td>
                                 <td>{data.time}</td>
-                            </Col>
+                            </tr>
                         ))}
-                        {/* <td>{round}</td>
-                        <td>{raceName}</td>
-                        <td>{circuitName}</td>
-                        <td>{country}</td>
-                        <td>{date}</td>
-                        <td>{time}</td> */}
-                    </tr>
                 </tbody>
             </Table>
 
