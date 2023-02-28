@@ -6,6 +6,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Login from './components/Login';
 import Register from './components/Register';
 import Raceschedule from './components/Raceschedule';
+import Standings from './components/Standings';
+import Merchandise from './components/Merchandise';
+import BookTickets from './components/BookTickets';
+import Cart from './components/Cart';
+import CreditCardForm from './components/CreditCardForm';
 
 function App() {
   return (
@@ -19,6 +24,11 @@ function App() {
           <Route path='login' element={<Login/>}/>
           <Route path='register' element={<Register/>}/>
           <Route path='raceschedules' element={<Raceschedule/>}/>
+          <Route path='standings' element={<Standings/>}/>
+          <Route path='merchandise' element={<Merchandise/>}/>
+          <Route path='bookTickets' element={<BookTickets/>}/>
+          <Route path='cart' element={<Cart/>}/>
+          <Route path='creditcard' element={<CreditCardForm/>}/>
         </Routes>
       </Router>
       <Footer/>

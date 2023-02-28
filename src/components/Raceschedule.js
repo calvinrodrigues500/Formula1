@@ -3,12 +3,15 @@ import Table from 'react-bootstrap/Table';
 import instance from '../baseUrl';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import BookTickets from './BookTickets';
 
 function Raceschedule() {
 
     const [schedules, setSchedules] = useState([])
+<<<<<<< HEAD
+=======
+    const [year,setYear] = useState('2023')
+>>>>>>> d04862dfd00985224312cbbaa6f222bbd99a1fd2
     const [round,setRound] = useState('')
     const [raceName,setRaceName] = useState('')
     const [circuitName,setCircuitName] = useState('')
@@ -17,8 +20,8 @@ function Raceschedule() {
     const [time,setTime] = useState('')
 
     async function fetchData() {
-        const result = await instance.get('2021.json')
-        console.log(result.data.MRData.RaceTable.Races);
+        const result = await instance.get(`${year}.json`)
+        // console.log(result.data.MRData.RaceTable.Races);
         setRound(result.data.MRData.RaceTable.Races[0].round)
         setRaceName(result.data.MRData.RaceTable.Races[0].raceName)
         setCircuitName(result.data.MRData.RaceTable.Races[0].Circuit.circuitName)
@@ -34,15 +37,16 @@ function Raceschedule() {
     return (
         <div>
             <div>
-                <Form className='col-3 p-1'>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter year" />
+                <Form className='col-3 p-1 ms-5 mt-3'>
+                    <Form.Group className="mb-3">
+                        <Form.Control onChange={(e)=>setYear(e.target.value)} type="text" placeholder="Enter year" />
                     </Form.Group>
 
                     <div className='text-center'>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" onClick={fetchData}>
                                 Search
                             </Button>
+                            <h1 style={{marginLeft:'700px', marginTop:'-100px', paddingBottom:'60px'}}>{year}</h1>
                     </div>
                 </Form>
 
@@ -58,10 +62,18 @@ function Raceschedule() {
                         <th>Time</th>
                     </tr>
                 </thead>
+<<<<<<< HEAD
                 <tbody>
                         {schedules.map((data)=>(
                             <tr key={data.round}>
                                 <td>{data.round}</td>
+=======
+                <tbody style={{cursor:'pointer'}}>
+
+                        {schedules.map(data=>(
+                            <tr key={data.round}>
+                                <td>{data.round}<BookTickets/></td>
+>>>>>>> d04862dfd00985224312cbbaa6f222bbd99a1fd2
                                 <td>{data.raceName}</td>
                                 <td>{data.Circuit.circuitName}</td>
                                 <td>{data.Circuit.Location.country}</td>
